@@ -1,3 +1,5 @@
+Input:
+
 using System;
 
 class Program // Changed from "class void Main()" to "class Program"
@@ -24,3 +26,12 @@ class Program // Changed from "class void Main()" to "class Program"
         }
     }
 }
+
+Output: 
+3
+500 700
+FIRST
+600 600
+ANY
+800 300 
+SECOND
