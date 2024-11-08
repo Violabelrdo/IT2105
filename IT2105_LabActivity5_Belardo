@@ -1,0 +1,99 @@
+using System;
+
+class Program
+{
+    static decimal balance = 0.00m;
+
+    static void Main()
+    {
+        int choice;
+
+        do
+        {
+            
+            Console.Clear();
+            DisplayMenu();
+
+            
+            Console.Write("Choose an option (1-4): ");
+            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
+            {
+                Console.Write("Invalid input. Please choose a valid option (1-4): ");
+            }
+
+            switch (choice)
+            {
+                case 1:
+                    Deposit();
+                    break;
+                case 2:
+                    Withdraw();
+                    break;
+                case 3:
+                    CheckBalance();
+                    break;
+                case 4:
+                    Console.WriteLine("Exiti");
+                    break;
+            }
+
+        } while (choice != 4); 
+    }
+
+    static void DisplayMenu()
+    {
+        Console.WriteLine("Bank Account Menu:");
+        Console.WriteLine("1. Deposit");
+        Console.WriteLine("2. Withdraw");
+        Console.WriteLine("3. Check Balance");
+        Console.WriteLine("4. Exit");
+    }
+
+    static void Deposit()
+    {
+        Console.Write("Enter the amount to deposit: ");
+        decimal depositAmount;
+        while (!decimal.TryParse(Console.ReadLine(), out depositAmount) || depositAmount <= 0)
+        {
+            Console.Write("Invalid amount. Please enter a positive value: ");
+        }
+
+        balance += depositAmount;
+        Console.WriteLine($"${depositAmount:C} has been deposited to your account.");
+        Console.WriteLine($"Current balance: {balance:C}");
+        Console.WriteLine("Press any key to return to the menu...");
+        Console.ReadKey();
+    }
+
+    static void Withdraw()
+    {
+        Console.Write("Enter the amount to withdraw: ");
+        decimal withdrawAmount;
+        while (!decimal.TryParse(Console.ReadLine(), out withdrawAmount) || withdrawAmount <= 0)
+        {
+            Console.Write("Invalid amount. Please enter a positive value: ");
+        }
+
+        if (withdrawAmount > balance)
+        {
+            Console.WriteLine("Insufficient funds.");
+        }
+        else
+        {
+            balance -= withdrawAmount;
+            Console.WriteLine($"${withdrawAmount:C} has been withdrawn from your account.");
+            Console.WriteLine($"Current balance: {balance:C}");
+        }
+        Console.WriteLine("Press any key to return to the menu...");
+        Console.ReadKey();
+    }
+
+    static void CheckBalance()
+    {
+        Console.WriteLine($"Your current balance is: {balance:C}");
+        Console.WriteLine("Press any key to return to the menu...");
+        Console.ReadKey();
+    }
+}
+
+
